@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         breakpoints: {
             768: {
-                slidesPerView: 2,
-                spaceBetween: 20,
+                slidesPerView: 3,
+                spaceBetween: 30,
             },
         },
         autoplay: {
@@ -93,7 +93,6 @@ $(document).ready(function() {
     });
 });
 
-
 $(document).ready(function() {
     var cards = $('.achievments-card');
 
@@ -110,5 +109,23 @@ $(document).ready(function() {
             });
         }
     });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                document.querySelectorAll('.achievments-card').forEach(function(card) {
+                    card.classList.add('animate');
+                });
+            } else {
+                document.querySelectorAll('.achievments-card').forEach(function(card) {
+                    card.classList.remove('animate');
+                });
+            }
+        });
+    });
+
+    observer.observe(document.querySelector('#achievements'));
 });
 
